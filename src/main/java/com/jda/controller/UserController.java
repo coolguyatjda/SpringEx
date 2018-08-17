@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jda.model.LoginModel;
 import com.jda.model.UserModel;
 import com.jda.service.IUserService;
 
@@ -42,8 +43,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login")
-	public ModelAndView login(@ModelAttribute("User") UserModel model){
-		System.out.println(model.getEmail());
-		return new ModelAndView("sample");
+	public ModelAndView login(@ModelAttribute("User") LoginModel model){
+		if(userService.loginUser(model))
+			return new ModelAndView("sample");
+		return null;
 	}
 }
