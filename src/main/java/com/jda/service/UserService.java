@@ -7,14 +7,17 @@ import com.jda.dao.IUserDAO;
 import com.jda.model.UserModel;
 
 @Service
-public class UserService implements IUserService{
+public class UserService implements IUserService {
 
 	@Autowired
 	IUserDAO userdao;
 
 	public boolean registerUser(UserModel model) {
-userdao.registerUser(model);
-		return false;
-	}
+		if (userdao.registerUser(model) > 0) {
+			return true;
+		} else {
+			return false;
+		}
 
+	}
 }

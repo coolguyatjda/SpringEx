@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 import com.jda.model.UserModel;
 
 @Repository
-@Service
 public class UserDAO implements IUserDAO{
 
 	@Autowired
-	DataSource dataSource;
+	private DataSource dataSource;
+	
 	public int registerUser(UserModel userModel){
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubn 
 		int id = 0;
 		try{
 			Connection connection = dataSource.getConnection();
