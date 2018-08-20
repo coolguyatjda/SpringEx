@@ -1,6 +1,7 @@
 package com.jda.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jda.model.LoginModel;
 import com.jda.model.UserModel;
 import com.jda.service.IUserService;
+import com.jda.utility.MailService;
 
 @Controller
 
@@ -16,6 +18,9 @@ public class UserController {
 	
 	@Autowired
 	IUserService userService;
+	
+//	@Autowired
+//	private MailService mailService;
 	
 	@RequestMapping(value = "/index")
 	public ModelAndView startupPage(){
@@ -42,10 +47,19 @@ public class UserController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/forgotdetails")
+	public ModelAndView getDetails(@ModelAttribute("User") LoginModel model){
+		userService.forgotPass(model);
+		return new ModelAndView("Login");
+	}
+	
 	@RequestMapping(value = "/login")
 	public ModelAndView login(@ModelAttribute("User") LoginModel model){
-		if(userService.loginUser(model))
+		if(userService.loginUser(model)){
+//			javaMailSenderImpl.send(MailService.sendMail());
+//			mailService.sendMail();
 			return new ModelAndView("sample");
-		return null;
+		}
+			return new ModelAndView("Login");
 	}
 }

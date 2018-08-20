@@ -6,9 +6,7 @@
 </head>
 <body>
 <h2>Hello ${name}!</h2>
-<form action="logout" method="post">
-		<input type="submit" value="Logout">
-	</form>
+<a href="index">Logout</a>
 	<a href="Reset">Reset Password!</a>
 </body>
 </html>

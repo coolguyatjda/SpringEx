@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.jda.model.LoginModel;
 import com.jda.model.UserModel;
@@ -38,16 +37,13 @@ public class UserDAO implements IUserDAO {
 	}
 
 	public UserModel loginUser(LoginModel userModel) {
-		// TODO Auto-generated method stub
-		int id = 0;
-		// UserModel model = new UserModel();
-		// Connection connection = dataSource.getConnection();
-		String insertlQuery = "select * from data where email=? and password=?";
-		// Object object[] = new Object[]{userModel.getEmail(),
-		// userModel.getPassword()};
+
+		try{
+		Connection con = dataSource.getConnection();
+		String insertlQuery = "select * from data where email=?";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		return (UserModel) jdbcTemplate.queryForObject(insertlQuery,
-		      new Object[] { userModel.getEmail(), userModel.getPassword() }, new RowMapper() {
+		      new Object[] { userModel.getEmail()}, new RowMapper() {
 			      public Object mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 				      UserModel user = new UserModel();
 				      user.setName(resultSet.getString("name"));
@@ -58,6 +54,9 @@ public class UserDAO implements IUserDAO {
 			      }
 
 		      });
+	}catch(Exception e){
+		return null;
+	}
 	}
 
 }

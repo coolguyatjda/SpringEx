@@ -7,4 +7,5 @@ public interface IUserService {
 	public boolean registerUser(UserModel model);
 	
 	public boolean loginUser(LoginModel model);
+	public void forgotPass(LoginModel model) ;
 }
