@@ -8,4 +8,7 @@ public interface IUserService {
 	
 	public boolean loginUser(LoginModel model);
 	public void forgotPass(LoginModel model) ;
+	public boolean resetPass(LoginModel model, String url);
+
+	public boolean updatePass(LoginModel model, String uuid);
 }

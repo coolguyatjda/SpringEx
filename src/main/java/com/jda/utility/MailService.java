@@ -32,7 +32,7 @@ public class MailService{
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo("sanketrathi2330@gmail.com");
 		message.setSubject("Forgot Password Bootcamp");
-		message.setText("Click on the Link Below /n" + link );
+		message.setText("Click on the Link Below " +"\n" + link );
 		javaMail.send(message);;
 	}
 

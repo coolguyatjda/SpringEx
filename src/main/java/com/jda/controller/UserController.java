@@ -1,5 +1,7 @@
 package com.jda.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
@@ -61,5 +63,27 @@ public class UserController {
 			return new ModelAndView("sample");
 		}
 			return new ModelAndView("Login");
+	}
+	
+	@RequestMapping(value = "Reset")
+	public ModelAndView resetPage(@ModelAttribute("User") LoginModel model, HttpServletRequest request){
+		String url = request.getRequestURL().toString();
+		if(userService.resetPass(model, url))
+			return new ModelAndView("Success");
+		return new ModelAndView("ResetPass");
+	}
+	
+	@RequestMapping(value = "resetpassword")
+	public ModelAndView resetPage(){
+			return new ModelAndView("ResetPass");
+	}
+	
+	@RequestMapping(value = "updatePass")
+	public ModelAndView updatePass(@ModelAttribute("User") LoginModel model, HttpServletRequest request){
+		String uuid = request.getHeader("Referer");
+		if(userService.updatePass(model, uuid)){
+		return new ModelAndView("Login");
+		}
+		return null;
 	}
 }

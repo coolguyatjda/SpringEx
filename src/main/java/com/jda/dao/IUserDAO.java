@@ -7,4 +7,9 @@ public interface IUserDAO {
 	public int registerUser(UserModel model);
 
 	public UserModel loginUser(LoginModel model);
+
+	public int update(LoginModel model, String uuid);
+
+	public int insertUuid(LoginModel model, String uuid);
+
 }

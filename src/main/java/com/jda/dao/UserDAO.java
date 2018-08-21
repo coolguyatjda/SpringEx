@@ -59,4 +59,34 @@ public class UserDAO implements IUserDAO {
 	}
 	}
 
+	public int update(LoginModel model, String uuid) {
+		int id = 0;
+		try {
+			Connection con = dataSource.getConnection();
+			String insertlQuery = "update data set password=? where uuid=?";
+			Object object[] = new Object[]{model.getPassword(), uuid};
+			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+			return jdbcTemplate.update(insertlQuery, object);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+return id;
+	}
+
+	public int insertUuid(LoginModel model, String uuid) {
+		try {
+			Connection con = dataSource.getConnection();
+			String insertlQuery = "update data set uuid=? where email=?";
+			Object object[] = new Object[]{uuid, model.getEmail()};
+			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+			return jdbcTemplate.update(insertlQuery, object);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

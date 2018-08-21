@@ -5,7 +5,7 @@
 <head>
 </head>
 <body>
-	<form method="post" action="login">
+	<form method="post" action="Reset" modelAttribute="User">
 		<h3>Forgot Password: :</h3>
 		<label for="email">User name:</label> <input type="text" name="email" placeholder="email"> <br> 
 		<br> <input type="submit" value="submit">
