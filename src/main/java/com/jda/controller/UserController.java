@@ -69,8 +69,8 @@ public class UserController {
 	public ModelAndView resetPage(@ModelAttribute("User") LoginModel model, HttpServletRequest request){
 		String url = request.getRequestURL().toString();
 		if(userService.resetPass(model, url))
-			return new ModelAndView("Success");
-		return new ModelAndView("ResetPass");
+			return new ModelAndView("Login");
+		return new ModelAndView("Login");
 	}
 	
 	@RequestMapping(value = "resetpassword")

@@ -44,7 +44,7 @@ public class UserService implements IUserService {
 	}
 		
 		public boolean resetPass(LoginModel model, String url) {
-		UserModel userModel = userdao.loginUser(model);
+//		UserModel userModel = userdao.loginUser(model);
 		url=url.substring(0, url.lastIndexOf("/"));
 		String uuid=UUID.randomUUID().toString();
 		String link = url + "/resetpassword?uuid="+ uuid;
